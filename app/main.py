@@ -3,5 +3,5 @@ from app.routes import booking, products
 
 app = FastAPI()
 
-app.include_router(products.router, prefix="/products", tag=["Products"])
-app.include_router(booking.router, prefix="/bookings", tag=["Bookings"])
+app.include_router(products.router, prefix="/products", tags=["Products"])
+app.include_router(booking.router, prefix="/bookings", tags=["Bookings"])
