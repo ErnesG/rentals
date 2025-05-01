@@ -1,15 +1,16 @@
-from app.core.database import db
+from motor.motor_asyncio import AsyncIOMotorDatabase
 from app.models.product import Product
 from typing import List
 
 class ProductService:
-    @staticmethod
-    async def create_product(product: Product) -> Product:
-        result = await db.products.insert_one(product.dict(by_alias=True))
+    def __init__(self, db: AsyncIOMotorDatabase):
+        self.db = db
+
+    async def create_product(self, product: Product) -> Product:
+        result = await self.db.products.insert_one(product.dict(by_alias=True))
         product.id = str(result.inserted_id)
         return product
 
-    @staticmethod
-    async def get_products() -> List[Product]:
-        products = await db.products.find().to_list(length=100)
+    async def get_products(self) -> List[Product]:
+        products = await self.db.products.find().to_list(length=100)
         return [Product(**product) for product in products] 
