@@ -5,6 +5,7 @@ from app.services.product_service import ProductService
 from app.services.booking_service import BookingService
 from app.services.invoice_service import InvoiceService
 from app.services.user_service import UserService
+from app.services.admin_service import AdminService
 
 class Container:
     def __init__(self):
@@ -16,6 +17,7 @@ class Container:
         self.booking_service = BookingService(self.db)
         self.invoice_service = InvoiceService(self.db)
         self.user_service = UserService(self.db)
+        self.admin_service = AdminService(self.db)
 
 # Create a global container instance
 container = Container()
@@ -31,4 +33,7 @@ async def get_invoice_service() -> InvoiceService:
     return container.invoice_service
 
 async def get_user_service() -> UserService:
-    return container.user_service 
+    return container.user_service
+
+async def get_admin_service() -> AdminService:
+    return container.admin_service 
