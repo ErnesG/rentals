@@ -66,6 +66,3 @@ A FastAPI-based backend system for managing party equipment rentals, including i
 - GET `/admin/reports/popular-items` - Get popular items
 - GET `/admin/reports/availability` - Get availability report
 
-## Environment Setup
-
-Create a `.env` file with the following variables:
