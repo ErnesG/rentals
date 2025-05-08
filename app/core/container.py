@@ -3,6 +3,8 @@ from motor.motor_asyncio import AsyncIOMotorClient, AsyncIOMotorDatabase
 from app.core.config import settings
 from app.services.product_service import ProductService
 from app.services.booking_service import BookingService
+from app.services.invoice_service import InvoiceService
+from app.services.user_service import UserService
 
 class Container:
     def __init__(self):
@@ -12,6 +14,8 @@ class Container:
         # Initialize services with database dependency
         self.product_service = ProductService(self.db)
         self.booking_service = BookingService(self.db)
+        self.invoice_service = InvoiceService(self.db)
+        self.user_service = UserService(self.db)
 
 # Create a global container instance
 container = Container()
@@ -21,4 +25,10 @@ async def get_product_service() -> ProductService:
     return container.product_service
 
 async def get_booking_service() -> BookingService:
-    return container.booking_service 
+    return container.booking_service
+
+async def get_invoice_service() -> InvoiceService:
+    return container.invoice_service
+
+async def get_user_service() -> UserService:
+    return container.user_service 
