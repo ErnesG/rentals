@@ -66,3 +66,31 @@ A FastAPI-based backend system for managing party equipment rentals, including i
 - GET `/admin/reports/popular-items` - Get popular items
 - GET `/admin/reports/availability` - Get availability report
 
+### Local Setup
+
+1. Install MongoDB
+2. Run `python app/db_init.py` to initialize the database
+3. Run `uvicorn app.main:app --reload` to start the server
+
+### MongoDB Setup
+# Update Homebrew
+brew update
+
+# Install MongoDB Community Edition
+brew tap mongodb/brew
+brew install mongodb-community
+
+# Create the data directory if it doesn't exist
+sudo mkdir -p /data/db
+sudo chown -R $(whoami) /data/db
+
+# Start MongoDB service
+brew services start mongodb-community
+
+For management is suggested to use MongoDB Compass
+
+# Connect to MongoDB
+mongosh
+
+# You should see MongoDB shell prompt
+# Exit with 'exit' command
